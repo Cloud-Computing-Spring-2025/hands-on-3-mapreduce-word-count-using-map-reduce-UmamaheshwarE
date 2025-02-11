@@ -23,12 +23,14 @@ Run the following command to start the Hadoop cluster:
 docker compose up -d
 ```
 
-### 2. **Build the Code**
+### 2. **Build the Code**[After writing the code in controller,mapper,reducer we are building it so that we that we dont have any missing dependecies and errors]
 
 Build the code using Maven:
 
 ```bash
-mvn install
+mvn install  
+(or)
+mvn clean package
 ```
 
 ### 3. **Move JAR File to Shared Folder**
@@ -36,7 +38,7 @@ mvn install
 Move the generated JAR file to a shared folder for easy access:
 
 ```bash
-mv target/*.jar shared-folder/input/code/
+mv target/*.jar shared-folder/input/data/
 ```
 
 ### 4. **Copy JAR to Docker Container**
@@ -44,7 +46,7 @@ mv target/*.jar shared-folder/input/code/
 Copy the JAR file to the Hadoop ResourceManager container:
 
 ```bash
-docker cp shared-folder/input/code/<your-jar-file>.jar resourcemanager:/opt/hadoop-3.2.1/share/hadoop/mapreduce/
+docker cp shared-folder/input/data/WordCountUsingHadoop 0.0.1-SNAPSHOT.jar resourcemanager:/opt/hadoop-3.2.1/share/hadoop/mapreduce/
 ```
 
 ### 5. **Move Dataset to Docker Container**
@@ -88,7 +90,7 @@ hadoop fs -put ./input.txt /input/dataset
 Run your MapReduce job using the following command:
 
 ```bash
-hadoop jar /opt/hadoop-3.2.1/share/hadoop/mapreduce/<your-jar-file>.jar com.example.controller.Controller /input/dataset/input.txt /output
+hadoop jar /opt/hadoop-3.2.1/share/hadoop/mapreduce/WordCountUsingHadoop 0.0.1-SNAPSHOT.jar com.example.controller.Controller /input/dataset/input.txt /output
 ```
 
 ### 9. **View the Output**
