@@ -23,7 +23,7 @@ Run the following command to start the Hadoop cluster:
 docker compose up -d
 ```
 
-### 2. **Build the Code**[After writing the code in controller,mapper,reducer we are building it so that we that we dont have any missing dependecies and errors]
+### 2. **Build the Code**[After writing the code in controller,mapper,reducer we are building it so that  we dont have any missing dependencies and errors]
 
 Build the code using Maven:
 
